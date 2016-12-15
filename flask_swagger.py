@@ -211,6 +211,12 @@ def swagger(app, prefix=None, process_doc=_sanitize,
                     if key in swag:
                         operation[key] = swag.get(key)
                 operations[verb] = operation
+            elif prefix:
+                operation = dict(
+                    description='function: `%s`' % method.__name__,
+                    tags=['Undocumented'],
+                )
+                operations[verb] = operation
 
         if len(operations):
             rule = str(rule)
